@@ -1,0 +1,27 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Scroll Reveal Base ── */
+.sr {
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-duration: 0.75s;
+  will-change: opacity, transform;
+}
+.sr.sr--up     { transform: translateY(40px); }
+.sr.sr--left   { transform: translateX(-44px); }
+.sr.sr--right  { transform: translateX(44px); }
+.sr.sr--scale  { transform: scale(0.88); }
+.sr.sr--visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* delay helpers */
+.sr-d1  { transition-delay: 0.08s; }
+.sr-d2  { transition-delay: 0.16s; }
+.sr-d3  { transition-delay: 0.24s; }
+.sr-d4  { transition-delay: 0.32s; }
+.sr-d5  { transition-delay: 0.40s; }
+.sr-d6  { transition-delay: 0.50s; }
+.sr-d7  { transition-delay: 0.60s; }
