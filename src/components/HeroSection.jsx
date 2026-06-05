@@ -230,6 +230,7 @@ export default function HeroSection() {
       >
         {/* ── LEFT DECORATION: pink arc + black curve ── */}
         <div
+          className="el-left-deco"
           style={{
             position: "absolute",
             left: "20px",
@@ -285,6 +286,7 @@ export default function HeroSection() {
 
         {/* ── HEADLINE ── */}
         <div
+          className="el-hero-text"
           style={{
             ...fadeIn,
             textAlign: "center",
@@ -415,13 +417,6 @@ export default function HeroSection() {
       </section>
 
       <style>{`
-        @media (max-width: 900px) {
-          .el-desktop-nav { display: none !important; }
-        }
-        @media (max-width: 600px) {
-          nav { padding: 18px 24px !important; }
-        }
-
         @keyframes floatShape {
           0%, 100% { transform: rotate(-15deg) translateY(0px); }
           50%       { transform: rotate(-15deg) translateY(-14px); }
@@ -430,22 +425,36 @@ export default function HeroSection() {
           0%, 100% { transform: translateY(0px); }
           50%       { transform: translateY(-10px); }
         }
-        @keyframes softPulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50%       { opacity: 0.75; transform: scale(1.04); }
-        }
-        .el-teardrop   { animation: floatShape 5s ease-in-out infinite; }
-        .el-left-deco  { animation: floatLeft  6s ease-in-out infinite; }
-        .el-nav-link   { position: relative; }
+        .el-teardrop  { animation: floatShape 5s ease-in-out infinite; }
+        .el-nav-link  { position: relative; }
         .el-nav-link::after {
-          content: '';
-          position: absolute;
+          content: ''; position: absolute;
           bottom: -2px; left: 0;
           width: 0; height: 1.5px;
-          background: #111;
-          transition: width 0.3s ease;
+          background: #111; transition: width 0.3s ease;
         }
         .el-nav-link:hover::after { width: 100%; }
+
+        /* ── Tablet ── */
+        @media (max-width: 900px) {
+          .el-desktop-nav { display: none !important; }
+          .el-hero-text   { padding: 0 40px !important; }
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 640px) {
+          nav { padding: 16px 20px !important; }
+          .el-left-deco  { display: none !important; }
+          .el-teardrop   { display: none !important; }
+          .el-hero-text  { padding: 0 16px !important; }
+          .el-hero-text p { font-size: 0.85rem !important; margin-bottom: 36px !important; }
+          .el-hero-text br { display: none; }
+        }
+
+        /* ── Very small ── */
+        @media (max-width: 380px) {
+          .el-hero-text { padding: 0 10px !important; }
+        }
       `}</style>
     </div>
   );

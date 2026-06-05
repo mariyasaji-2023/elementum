@@ -188,6 +188,7 @@ export default function ServicesTesti() {
             >
               {/* Left: small tag */}
               <span
+                className="svc-tag"
                 style={{
                   fontSize: "0.78rem",
                   color: "#888",
@@ -267,6 +268,7 @@ export default function ServicesTesti() {
 
         {/* Testimonial layout: left circles | center portrait | quote card | right circles */}
         <div
+          className="testi-layout"
           style={{
             display: "flex",
             alignItems: "center",
@@ -278,7 +280,7 @@ export default function ServicesTesti() {
           }}
         >
           {/* Left avatars — 3 small stacked */}
-          <div ref={srLeftAvatar} className="sr sr--left" style={{ position: "relative", width: "80px", height: "220px", flexShrink: 0 }}>
+          <div ref={srLeftAvatar} className="sr sr--left testi-side-avs" style={{ position: "relative", width: "80px", height: "220px", flexShrink: 0 }}>
             {testimonialAvatars.left.map((av, i) => (
               <img
                 key={i}
@@ -319,7 +321,7 @@ export default function ServicesTesti() {
           {/* Quote card */}
           <div
             ref={srQuoteCard}
-            className="sr sr--up sr-d3"
+            className="sr sr--up sr-d3 testi-quote"
             style={{
               background: "#f0fdf4",
               borderRadius: "16px",
@@ -372,7 +374,7 @@ export default function ServicesTesti() {
           </div>
 
           {/* Right avatars — 4 circles varying sizes */}
-          <div ref={srRightAvatar} className="sr sr--right sr-d4" style={{ position: "relative", width: "160px", height: "300px", flexShrink: 0 }}>
+          <div ref={srRightAvatar} className="sr sr--right sr-d4 testi-side-avs" style={{ position: "relative", width: "160px", height: "300px", flexShrink: 0 }}>
             {testimonialAvatars.right.map((av, i) => (
               <img
                 key={i}
@@ -396,46 +398,48 @@ export default function ServicesTesti() {
       </section>
 
       <style>{`
-        @media (max-width: 768px) {
-          section { padding: 60px 6% !important; }
-          h2 { font-size: 2rem !important; }
-          .testi-inner { flex-direction: column !important; }
-        }
-
-        @keyframes avatarFloat {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-6px); }
-        }
         @keyframes portraitGlow {
           0%, 100% { box-shadow: 0 2px 16px rgba(0,0,0,0.12); }
           50%       { box-shadow: 0 8px 32px rgba(109,40,217,0.25); }
         }
 
-        .svc-row {
-          transition: background 0.25s ease, padding-left 0.25s ease;
-        }
+        .svc-row { transition: background 0.25s ease, padding-left 0.25s ease; }
         .svc-row:hover { padding-left: 8px !important; }
-        .svc-arrow {
-          transition: transform 0.3s ease;
-          display: inline-block;
-        }
+        .svc-arrow { transition: transform 0.3s ease; display: inline-block; }
         .svc-row:hover .svc-arrow { transform: translateX(10px); }
 
-        .testi-avatar {
-          transition: transform 0.35s ease, box-shadow 0.35s ease;
-          cursor: pointer;
-        }
-        .testi-avatar:hover {
-          transform: scale(1.12) !important;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.18) !important;
-          z-index: 10;
+        .testi-avatar { transition: transform 0.35s ease, box-shadow 0.35s ease; cursor: pointer; }
+        .testi-avatar:hover { transform: scale(1.12) !important; box-shadow: 0 8px 24px rgba(0,0,0,0.18) !important; z-index: 10; }
+
+        .center-portrait { animation: portraitGlow 4s ease-in-out infinite; transition: transform 0.35s ease; }
+        .center-portrait:hover { transform: scale(1.06); }
+
+        /* ── Tablet ── */
+        @media (max-width: 900px) {
+          .testi-side-avs { display: none !important; }
+          .testi-layout   { gap: 20px !important; }
+          .svc-tag        { max-width: 100px !important; font-size: 0.72rem !important; }
         }
 
-        .center-portrait {
-          animation: portraitGlow 4s ease-in-out infinite;
-          transition: transform 0.35s ease;
+        /* ── Mobile ── */
+        @media (max-width: 640px) {
+          section { padding: 48px 5% !important; }
+          .testi-layout {
+            flex-direction: column !important;
+            align-items: center !important;
+            gap: 20px !important;
+          }
+          .testi-side-avs  { display: none !important; }
+          .center-portrait { width: 100px !important; height: 100px !important; }
+          .testi-quote     { max-width: 100% !important; padding: 24px 20px !important; }
+          .svc-row         { flex-wrap: wrap; gap: 8px; }
+          .svc-tag         { flex: 0 0 100% !important; max-width: 100% !important; margin-bottom: 4px; }
+          .svc-arrow       { margin-left: auto !important; }
         }
-        .center-portrait:hover { transform: scale(1.06); }
+
+        @media (max-width: 380px) {
+          .center-portrait { width: 80px !important; height: 80px !important; }
+        }
       `}</style>
     </div>
   );

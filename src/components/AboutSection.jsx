@@ -64,6 +64,7 @@ export default function AboutSection() {
       ══════════════════════════════════ */}
       <section
         ref={ref1}
+        className="about-row"
         style={{
           position: "relative",
           display: "flex",
@@ -259,6 +260,7 @@ export default function AboutSection() {
       ══════════════════════════════════ */}
       <section
         ref={ref2}
+        className="about-row about-row--reverse"
         style={{
           position: "relative",
           display: "flex",
@@ -430,50 +432,52 @@ export default function AboutSection() {
       </section>
 
       <style>{`
-        @media (max-width: 768px) {
-          section {
-            flex-direction: column !important;
-            padding: 60px 6% !important;
-            text-align: center;
-          }
-          section > div { flex: unset !important; width: 100% !important; }
-          section > div:first-child { margin-bottom: 40px; }
-          h2 { font-size: 2rem !important; }
-        }
-
-        @keyframes floatDeco {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50%       { transform: translateY(-8px) rotate(2deg); }
-        }
-        @keyframes floatDecoAlt {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50%       { transform: translateY(-6px) rotate(-2deg); }
-        }
-
-        .about-img {
-          transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .about-img:hover {
-          transform: scale(1.04);
-          box-shadow: 0 16px 48px rgba(0,0,0,0.16) !important;
-        }
-
-        .about-read-more {
-          position: relative;
-          transition: gap 0.3s ease;
-        }
-        .about-read-more .read-line {
-          transition: width 0.35s ease;
-        }
-        .about-read-more:hover .read-line {
-          width: 90px !important;
-        }
-        .about-read-more:hover {
-          opacity: 0.7;
-        }
+        @keyframes floatDeco    { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-8px) rotate(2deg)} }
+        @keyframes floatDecoAlt { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-6px) rotate(-2deg)} }
 
         .about-square-1 { animation: floatDeco    5s ease-in-out infinite; }
         .about-square-2 { animation: floatDecoAlt 4s ease-in-out infinite; }
+
+        .about-img { transition: transform 0.4s ease, box-shadow 0.4s ease; }
+        .about-img:hover { transform: scale(1.04); box-shadow: 0 16px 48px rgba(0,0,0,0.16) !important; }
+
+        .about-read-more { position: relative; }
+        .about-read-more .read-line { transition: width 0.35s ease; }
+        .about-read-more:hover .read-line { width: 90px !important; }
+        .about-read-more:hover { opacity: 0.7; }
+
+        /* ── Tablet ── */
+        @media (max-width: 900px) {
+          .about-row { padding: 60px 6% !important; gap: 32px; }
+          .about-row > div { flex: 0 0 48% !important; }
+          .about-img { width: 280px !important; height: 280px !important; }
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 640px) {
+          .about-row {
+            flex-direction: column !important;
+            padding: 48px 6% !important;
+            text-align: center;
+            min-height: unset !important;
+          }
+          .about-row--reverse { flex-direction: column-reverse !important; }
+          .about-row > div   { flex: unset !important; width: 100% !important; }
+          .about-row > div:not(:last-child) { margin-bottom: 36px; }
+          .about-img { width: 240px !important; height: 240px !important; }
+          .about-square-1, .about-square-2 { display: none !important; }
+          .about-read-more { justify-content: center; }
+          /* override useInView translateX so it doesn't break stacked layout */
+          .about-row > div[style] {
+            transform: none !important;
+            opacity: 1 !important;
+          }
+        }
+
+        @media (max-width: 380px) {
+          .about-img { width: 200px !important; height: 200px !important; }
+          .about-row { padding: 36px 5% !important; }
+        }
       `}</style>
     </div>
   );

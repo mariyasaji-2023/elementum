@@ -143,6 +143,7 @@ export default function NewsletterFooter() {
         >
           {/* 4-column grid */}
           <div
+            className="footer-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",
@@ -207,10 +208,17 @@ export default function NewsletterFooter() {
       </section>
 
       <style>{`
-        @media (max-width: 768px) {
-          .footer-grid { grid-template-columns: repeat(2, 1fr) !important; }
+        /* ── Tablet ── */
+        @media (max-width: 900px) {
+          .footer-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 32px !important; }
         }
-        @media (max-width: 480px) {
+        /* ── Mobile ── */
+        @media (max-width: 640px) {
+          .footer-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 24px 16px !important; }
+          section[style] { padding: 48px 5% 0 !important; }
+        }
+        /* ── Very small ── */
+        @media (max-width: 380px) {
           .footer-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
